@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .message {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            background-color: red;
+            padding: 15px 25px;
+            border-radius: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid white;
+            width: 0;
+            animation: typing 2s steps(25, end) forwards, blink 0.5s infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 336px; }
+           
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .yes {
+            background-color: green;
+            color: white;
+        }
+        .no {
+            background-color: red;
+            color: white;
+            position: absolute;
+        }
+        .heart {
+            position: absolute;
+            top: -50px;
+            font-size: 24px;
+            color: red;
+            animation: fall linear infinite;
+        }
+        /* Efek Transisi */
+        .transition {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            opacity: 0;
+            z-index: 2;
+            transition: opacity 1.5s;
+            display: none;
+        }
+
+        .animation-container {
+            position: absolute;
+            bottom: 50px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animation-container">
+        <img src="giphy (1).gif" alt="Animasi Bergerak" width="300px">
+    </div>
+
+    <div class="message">Will you be my Valentine?</div>
+    <div class="buttons">
+        <button class="yes" onclick="nextPage()">Yes</button>
+        <button class="no" onmouseover="moveButton()">No</button>
+    </div>
+
+    <div class="transition"></div>
+
+
+    <script>
+         function moveButton() {
+            const button = document.querySelector('.no');
+            button.style.top = Math.random() * window.innerHeight + "px";
+            button.style.left = Math.random() * window.innerWidth + "px";
+
+            }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤";
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        function nextPage() {
+            const transition = document.querySelector('.transition');
+            transition.style.display = "block";
+            setTimeout(() => {
+                transition.style.opacity = 1;
+                setTimeout(() => {
+                    window.location.href = "valentine-scene.html"; // Ganti dengan halaman berikutnya
+                }, 1500);
+            }, 100);
+        }
+        
+        function celebrate() {
+            alert("Yay! ❤ You made my day!");
+            for (let i = 0; i < 30; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+
+        setInterval(createHeart, 700);
+    </script>
+
+</body>
+</html>
+

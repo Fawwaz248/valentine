@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Knew you would say yes</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .message {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            background-color: red;
+            padding: 15px 25px;
+            border-radius: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid white;
+            width: 0;
+            animation: typing 2s steps(25, end) forwards, blink 0.5s infinite;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 336px; }
+           
+        }
+        @keyframes blink {
+            50% { border-color: transparent; }
+
+        }
+        
+        .heart {
+            position: absolute;
+            top: -50px;
+            font-size: 24px;
+            color: red;
+            animation: fall linear infinite;
+        }
+
+        .animation-container {
+            position: absolute;
+            bottom: 50px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animation-container">
+        <img src="giphy.gif" alt="Animasi Bergerak" width="300px">
+    </div>
+
+    <div class="message">I Knew you would say yes</div>
+    </div>
+    
+    <div class="transition"></div>
+
+
+    <script>
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤";
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * window.innerWidth + "px";
+            heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        setInterval(createHeart, 700);
+    </script>
+
+</body>
+</html>
